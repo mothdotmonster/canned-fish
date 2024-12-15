@@ -5,5 +5,7 @@
 	"author": "Chesapeake [moth.monster]",
 	"factorio_version": "2.0",
 	"dependencies": ["base >= 2.0"],
-	"description": "Put fish in a can to make it last longer."
+	"description": "Put fish in a can to make it last longer.",
+	"homepage": "https://github.com/mothdotmonster/canned-fish",
+	"contact": "hello@moth.monster"
 }
