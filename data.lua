@@ -1,16 +1,21 @@
 local cannedFish = table.deepcopy(data.raw["capsule"]["raw-fish"])
 local emptyCan = table.deepcopy(data.raw["item"]["barrel"])
+local usedCan = table.deepcopy(data.raw["item"]["barrel"])
 
 local function colorCan(tint)
 	icons = {
 		{
-			icon = "__canned-fish__/icons/organic-food-canned-3.png",
+			icon = "__canned-fish__/icons/blank-can.png",
 			icon_size = 64
 		},
 		{
 			icon = "__canned-fish__/icons/can-label.png",
 			icon_size = 64,
 			tint = tint
+		},
+		{
+			icon = "__canned-fish__/icons/can-logo.png",
+			icon_size = 64,
 		}
 	}
 	return icons
@@ -29,13 +34,8 @@ local function makeRecipe(name, iconPath, iconSize)
 		results = {{type = "item", name = name, amount = 1}},
 		icons = {
 			{
-				icon = "__canned-fish__/icons/organic-food-canned-3.png",
+				icon = "__canned-fish__/icons/empty-can.png",
 				icon_size = 64
-			},
-			{
-				icon = "__canned-fish__/icons/can-label.png",
-				icon_size = 64,
-				tint = {.5, .5, .5}
 			},
 			{
 				icon = iconPath,
@@ -48,7 +48,7 @@ local function makeRecipe(name, iconPath, iconSize)
 end
 
 emptyCan.name = "empty-can"
-emptyCan.icons = colorCan({.5, .5, .5})
+emptyCan.icon = "__canned-fish__/icons/empty-can.png"
 
 local emptyCanRecipe = {
   type = "recipe",
@@ -60,11 +60,45 @@ local emptyCanRecipe = {
   },
   results = {{type = "item", name = "empty-can", amount = 1}}
 }
+
 data:extend{emptyCan, emptyCanRecipe}
 
 cannedFish.name = "canned-fish"
 cannedFish.spoil_ticks = 21600000
 cannedFish.icons = colorCan({.6, .8, .2})
 
+usedCan.name = "used-can"
+usedCan.icon = "__canned-fish__/icons/open-can.png"
+
+local usedCanRecipe = {
+  type = "recipe",
+	category = "recycling",
+  name = "used-can-recycling",
+  enabled = true,
+  energy_required = 1,
+  ingredients = {
+    {type = "item", name = "used-can", amount = 1}
+  },
+  results = {{type = "item", name = "steel-plate", amount = 1}},
+	hide_from_player_crafting = true,
+	icons = {
+		{
+			icon = "__quality__/graphics/icons/recycling.png",
+			icon_size = 64
+		},
+		{
+			icon = "__canned-fish__/icons/open-can.png",
+			icon_size = 64,
+			scale = .3
+		},
+		{
+			icon = "__quality__/graphics/icons/recycling-top.png",
+			icon_size = 64
+		}
+	}
+}
+
 local cannedFishRecipe = makeRecipe("canned-fish", "__base__/graphics/icons/fish.png", 64)
+
 data:extend{cannedFish, cannedFishRecipe}
+data:extend{usedCan, usedCanRecipe}
