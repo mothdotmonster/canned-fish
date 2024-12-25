@@ -1,10 +1,10 @@
 {
 	"name": "canned-fish",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"title": "Canned Fish",
 	"author": "Chesapeake [moth.monster]",
 	"factorio_version": "2.0",
-	"dependencies": ["base >= 2.0", "quality"],
+	"dependencies": ["base >= 2.0", "space-age", "? more-fish"],
 	"description": "Put fish in a can to make it last longer.",
 	"homepage": "https://github.com/mothdotmonster/canned-fish",
 	"contact": "hello@moth.monster"

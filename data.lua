@@ -2,6 +2,8 @@ local cannedFish = table.deepcopy(data.raw["capsule"]["raw-fish"])
 local emptyCan = table.deepcopy(data.raw["item"]["barrel"])
 local usedCan = table.deepcopy(data.raw["item"]["barrel"])
 
+local spoilTime = 21600000
+
 local function colorCan(tint)
 	icons = {
 		{
@@ -21,26 +23,29 @@ local function colorCan(tint)
 	return icons
 end
 
-local function makeRecipe(name, iconPath, iconSize)
+local function makeRecipe(name, fishType, iconPath, iconSize)
 	recipe = {
 		type = "recipe",
 		name = name,
 		enabled = true,
 		energy_required = 1,
 		ingredients = {
-			{type = "item", name = "raw-fish", amount = 1},
+			{type = "item", name = fishType, amount = 1},
 			{type = "item", name = "empty-can", amount = 1}
 		},
 		results = {{type = "item", name = name, amount = 1}},
 		icons = {
 			{
 				icon = "__canned-fish__/icons/empty-can.png",
-				icon_size = 64
+				icon_size = 64,
+				scale = 0.3,
+				shift = {3, 3}
 			},
 			{
 				icon = iconPath,
 				icon_size = iconSize,
-				shift = {-8, -8}
+				scale = ((32/iconSize)*0.6),
+				shift = {-3, -3}
 			}
 		}
 	}
@@ -64,7 +69,7 @@ local emptyCanRecipe = {
 data:extend{emptyCan, emptyCanRecipe}
 
 cannedFish.name = "canned-fish"
-cannedFish.spoil_ticks = 21600000
+cannedFish.spoil_ticks = spoilTime
 cannedFish.icons = colorCan({.6, .8, .2})
 
 usedCan.name = "used-can"
@@ -98,7 +103,40 @@ local usedCanRecipe = {
 	}
 }
 
-local cannedFishRecipe = makeRecipe("canned-fish", "__base__/graphics/icons/fish.png", 64)
+local cannedFishRecipe = makeRecipe("canned-fish", "raw-fish", "__base__/graphics/icons/fish.png", 64)
 
 data:extend{cannedFish, cannedFishRecipe}
 data:extend{usedCan, usedCanRecipe}
+
+if mods["more-fish"] then
+  local cannedSalmon = table.deepcopy(data.raw["capsule"]["raw-salmon"])
+	local cannedCod = table.deepcopy(data.raw["capsule"]["raw-cod"])
+	local cannedPufferfish = table.deepcopy(data.raw["capsule"]["raw-pufferfish"])
+	local cannedClownfish = table.deepcopy(data.raw["capsule"]["raw-clownfish"])
+
+	cannedSalmon.name = "canned-salmon"
+	cannedSalmon.spoil_ticks = spoilTime
+	cannedSalmon.icons = colorCan({1, .5, .4})
+
+	cannedCod.name = "canned-cod"
+	cannedCod.spoil_ticks = spoilTime
+	cannedCod.icons = colorCan({.8, .6, .6})
+
+	cannedPufferfish.name = "canned-pufferfish"
+	cannedPufferfish.spoil_ticks = spoilTime
+	cannedPufferfish.icons = colorCan({1, 1, 0})
+
+	cannedClownfish.name = "canned-clownfish"
+	cannedClownfish.spoil_ticks = spoilTime
+	cannedClownfish.icons = colorCan({.9, .5, .2})
+
+	local cannedSalmonRecipe = makeRecipe("canned-salmon", "raw-salmon", "__more-fish__/graphics/icons/Raw_Salmon_JE2_BE2.png", 160)
+	local cannedCodRecipe = makeRecipe("canned-cod", "raw-cod", "__more-fish__/graphics/icons/Raw_Cod_JE4_BE2.png", 160)
+	local cannedPufferfishRecipe = makeRecipe("canned-pufferfish", "raw-pufferfish", "__more-fish__/graphics/icons/Pufferfish_(item)_JE5_BE2.png", 160)
+	local cannedClownfishRecipe = makeRecipe("canned-clownfish", "raw-clownfish", "__more-fish__/graphics/icons/Tropical_Fish_JE2_BE2.png", 160)
+
+	data:extend{cannedSalmon, cannedSalmonRecipe}
+	data:extend{cannedCod, cannedCodRecipe}
+	data:extend{cannedPufferfish, cannedPufferfishRecipe}
+	data:extend{cannedClownfish, cannedClownfishRecipe}
+end
