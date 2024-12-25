@@ -1,0 +1,20 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.2.2
+  Bugfixes:
+    - No longer summon empty cans from the aether upon the use of a grenade or capsule.
+---------------------------------------------------------------------------------------------------
+Version: 0.2.1
+  Features:
+    - Compatibility with More Fish.
+  Bugfixes:
+    - Recipe icon is now sized properly.
+---------------------------------------------------------------------------------------------------
+Version: 0.2.0
+  Features:
+    - Used cans. They can be recycled to get steel back.
+  Graphics:
+    - Custom graphics added.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+  Features:
+    - Initial release.
