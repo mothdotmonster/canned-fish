@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.3
+Date: 2/18/2025
+  Balancing:
+    - Canning fish is now locked behind a technology, available after steel.
+---------------------------------------------------------------------------------------------------
 Version: 0.2.2
   Bugfixes:
     - No longer summon empty cans from the aether upon the use of a grenade or capsule.

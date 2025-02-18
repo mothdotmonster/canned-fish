@@ -27,7 +27,7 @@ local function makeRecipe(name, fishType, iconPath, iconSize)
 	recipe = {
 		type = "recipe",
 		name = name,
-		enabled = true,
+		enabled = false,
 		energy_required = 1,
 		ingredients = {
 			{type = "item", name = fishType, amount = 1},
@@ -56,14 +56,14 @@ emptyCan.name = "empty-can"
 emptyCan.icon = "__canned-fish__/icons/empty-can.png"
 
 local emptyCanRecipe = {
-  type = "recipe",
-  name = "empty-can",
-  enabled = true,
-  energy_required = .2,
-  ingredients = {
-    {type = "item", name = "steel-plate", amount = 1}
-  },
-  results = {{type = "item", name = "empty-can", amount = 1}}
+	type = "recipe",
+	name = "empty-can",
+	enabled = false,
+	energy_required = .2,
+	ingredients = {
+		{type = "item", name = "steel-plate", amount = 1}
+	},
+	results = {{type = "item", name = "empty-can", amount = 1}}
 }
 
 data:extend{emptyCan, emptyCanRecipe}
@@ -76,15 +76,15 @@ usedCan.name = "used-can"
 usedCan.icon = "__canned-fish__/icons/open-can.png"
 
 local usedCanRecipe = {
-  type = "recipe",
+	type = "recipe",
 	category = "recycling",
-  name = "used-can-recycling",
-  enabled = true,
-  energy_required = 1,
-  ingredients = {
-    {type = "item", name = "used-can", amount = 1}
-  },
-  results = {{type = "item", name = "steel-plate", amount = 1}},
+	name = "used-can-recycling",
+	enabled = false,
+	energy_required = 1,
+	ingredients = {
+		{type = "item", name = "used-can", amount = 1}
+	},
+	results = {{type = "item", name = "steel-plate", amount = 1}},
 	hide_from_player_crafting = true,
 	icons = {
 		{
@@ -108,8 +108,19 @@ local cannedFishRecipe = makeRecipe("canned-fish", "raw-fish", "__base__/graphic
 data:extend{cannedFish, cannedFishRecipe}
 data:extend{usedCan, usedCanRecipe}
 
+effects = {
+	{
+		type = "unlock-recipe",
+		recipe = "empty-can"
+	},
+	{
+		type = "unlock-recipe",
+		recipe = "canned-fish"
+	}
+}
+
 if mods["more-fish"] then
-  local cannedSalmon = table.deepcopy(data.raw["capsule"]["raw-salmon"])
+	local cannedSalmon = table.deepcopy(data.raw["capsule"]["raw-salmon"])
 	local cannedCod = table.deepcopy(data.raw["capsule"]["raw-cod"])
 	local cannedPufferfish = table.deepcopy(data.raw["capsule"]["raw-pufferfish"])
 	local cannedClownfish = table.deepcopy(data.raw["capsule"]["raw-clownfish"])
@@ -139,4 +150,31 @@ if mods["more-fish"] then
 	data:extend{cannedCod, cannedCodRecipe}
 	data:extend{cannedPufferfish, cannedPufferfishRecipe}
 	data:extend{cannedClownfish, cannedClownfishRecipe}
+
+	table.insert(effects, { type = "unlock-recipe", recipe = "canned-salmon" })
+	table.insert(effects, { type = "unlock-recipe", recipe = "canned-cod" })
+	table.insert(effects, { type = "unlock-recipe", recipe = "canned-pufferfish" })
+	table.insert(effects, { type = "unlock-recipe", recipe = "canned-clownfish" })
 end
+
+technology = {
+	type = "technology",
+	name = "canned-fish-tech",
+	icon = "__canned-fish__/thumbnail.png",
+	icon_size = 144,
+	effects = effects,
+	prerequisites = {"steel-processing"},
+	unit =
+	{
+		count = 20,
+		ingredients =
+		{
+			{"automation-science-pack", 1},
+		},
+		time = 10
+	}
+}
+
+data:extend({technology})
+
+table.insert(data.raw["technology"]["recycling"].effects, { type = "unlock-recipe", recipe = "used-can-recycling" })
