@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.0
+Date: 4/2/2025
+  Features:
+    - Bioflux can now be canned. Doing so requires an additional research to unlock.
+      Canned bioflux can only be consumed by the player. It cannot be used in crafting recipes, nor fed to biters.
+  Changes:
+    - Items are now sorted into the combat category in their own subgroup.
+  Internal:
+    - Major code cleanup and refactoring.
+---------------------------------------------------------------------------------------------------
 Version: 0.2.3
 Date: 2/18/2025
   Balancing:
