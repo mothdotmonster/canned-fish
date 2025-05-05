@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.2
+Date: 5/5/2025
+  Features:
+    - Added achievements.
+  Locale:
+    - Russian localization updated. Shoutouts to @n3g on Crowdin!
+  Balancing:
+    - :)
+---------------------------------------------------------------------------------------------------
 Version: 0.3.1
 Date: 4/16/2025
   Locale:

@@ -11,6 +11,10 @@ require("data/item/canned-bioflux.lua")
 -- item subgroups
 require("data/subgroup/canned-fish.lua")
 
+-- achievements
+require("data/achievement/sorry-charlie.lua")
+require("data/achievement/blue-ribbon-of-the-sea.lua")
+
 -- compatibility with other mods
 if mods["more-fish"] then
 	require("data/compat/more-fish.lua")
