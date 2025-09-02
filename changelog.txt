@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.4
+Date: 9/1/2025
+  Balancing:
+    - Used can recycling now has 25% probability instead of 100%.
+  Bugfixes:
+    - Used can recycling no longer shows up directly in Factoriopedia.
+---------------------------------------------------------------------------------------------------
 Version: 0.3.3
 Date: 6/25/2025
   Locale:

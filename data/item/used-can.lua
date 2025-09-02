@@ -5,11 +5,19 @@ local usedCanRecipe = {
 	name = "used-can-recycling",
 	enabled = false,
 	energy_required = 1,
-	ingredients = {
-		{type = "item", name = "used-can", amount = 1}
-	},
-	results = {{type = "item", name = "steel-plate", amount = 1}},
+	ingredients = {{
+		type = "item",
+		name = "used-can",
+		amount = 1
+	}},
+	results = {{
+		type = "item",
+		name = "steel-plate",
+		amount = 1,
+		probability = .25
+	}},
 	hide_from_player_crafting = true,
+	hidden_in_factoriopedia = true,
 	icons = {
 		{
 			icon = "__quality__/graphics/icons/recycling.png",
